@@ -1,4 +1,9 @@
 //ここにゲーム本体のJSを書く
+var chara=[];
+window.onload=function() {
+	window.setInterval(viwe,500);
+};
+
 document.onkeydown=function (e){
 	input="";
 	if(e.keyCode==37){
@@ -24,6 +29,9 @@ function main(i){
 	}
 	console.log(i);
 }
+function viwe(){
+	
+}
 function cutted(){
 
 	var img=new Image();
@@ -35,12 +43,14 @@ function cutted(){
 		var ctx=canvas.getContext('2d');
 		canvas.width=img.width/3;
 		canvas.height=img.height/4;
-		//ctx.drawImage(img,0,0,img.width/3,img.height/4);
-		ctx.drawImage(img,0,0,10,30);
-
-
-		console.log(canvas.height+"#"+img.width);
-		var uri=canvas.toDataURL();
-		console.log(uri);
+		for(i=0;i<4;i++){
+			chara[i]=[];
+			for(j=0;j<3;j++){
+				ctx.drawImage(img,j*(img.width/3),i*(img.height/4),img.width/3,img.height/4,0,0,img.width/3,img.height/4);
+				
+				chara[i][j]=canvas.toDataURL();
+				ctx.clearRect(0,0,canvas.width,canvas.height);
+			}
+		}
 	};
 }
